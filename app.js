@@ -5,6 +5,10 @@ const axios = require("axios");
 const app = express();
 const PORT = 3000; // 可以更改為您希望的端口
 
+const cors = require("cors");
+// 啟用所有 CORS 請求
+app.use(cors());
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
