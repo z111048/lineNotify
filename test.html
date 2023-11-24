@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>反饋表單</title>
+  </head>
+  <body>
+    <h1>用戶反饋</h1>
+    <form id="feedback-form">
+      <label for="feedback">您的反饋：</label>
+      <textarea id="feedback" name="feedback" required></textarea>
+      <br />
+      <button type="submit">提交</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      document
+        .getElementById("feedback-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          var feedback = document.getElementById("feedback").value;
+
+          axios
+            .post("/submit-feedback", { feedback: feedback })
+            .then(function (response) {
+              console.log("Feedback submitted successfully");
+              // 可以在這裡添加更多的用戶反饋處理代碼
+            })
+            .catch(function (error) {
+              console.error("Error submitting feedback", error);
+              // 可以在這裡添加錯誤處理代碼
+            });
+        });
+    </script>
+  </body>
+</html>

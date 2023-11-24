@@ -13,10 +13,11 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 const LINE_NOTIFY_TOKEN = process.env.LINE_NOTIFY_TOKEN;
+console.log(LINE_NOTIFY_TOKEN);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/submit-feedback", (req, res) => {
+app.post("submit-feedback", (req, res) => {
   const feedback = req.body.feedback;
 
   lineNotify(feedback)
@@ -34,7 +35,7 @@ function lineNotify(message) {
     "Content-Type": "application/x-www-form-urlencoded",
     Authorization: `Bearer ${LINE_NOTIFY_TOKEN}`,
   };
-
+  console.log(console);
   const data = new URLSearchParams();
   data.append("message", message);
 
